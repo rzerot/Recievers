@@ -6,6 +6,8 @@ import android.os.BatteryManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import dragos.com.recievers.battery.BatteryReceiver;
+
 public class Main3Activity extends AppCompatActivity {
 
     @Override
@@ -13,7 +15,7 @@ public class Main3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
         IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        registerReceiver(null, intentFilter);
+        registerReceiver(new BatteryReceiver(), intentFilter);
 
     }
 }

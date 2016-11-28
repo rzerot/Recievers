@@ -19,8 +19,15 @@ public class BatteryReceiver extends BroadcastReceiver {
         int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
         float batteryPct = level / (float) scale;
 
+        boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING || status == BatteryManager.BATTERY_STATUS_FULL;
+        int chargePlug = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
+        boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
+        boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
+
+
         Log.d("TAG", "status " + status + "\nlevel " + level + "\nscale " + scale + "\nBattery " + batteryPct);
         Toast.makeText(context, "" + status + " " + level + " " + scale + " " + batteryPct, Toast.LENGTH_LONG).show();
+        Log.d("Charger", "isCharging " + isCharging + "\nchargePlug " + chargePlug + "\nusbCharge " + usbCharge + "\nacCharge " + acCharge);
 
     }
 }
